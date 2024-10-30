@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,231 +8,78 @@
     <title>Generate Use Case Diagram</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'style/Navbar.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Ensure the body can scroll */
-        body {
-            overflow-y: scroll;
-            height: 100vh;
-            padding-top: 70px;
-        }
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: white;
-        }
-        main {
-            padding: 20px;
-        }
-    </style>
 </head>
+
 <body>
-<div class="container">
-<header>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="{% static 'asset/gologo.png' %}" alt="Logo">
-        </div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Pages</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">My Projects</a></li>
-        </ul>
-        <div class="user-icon">
-            <i class="fas fa-user"></i>  
-        </div>
-    </nav>
-</header>
+    <header>
+        {% include 'navbar.html' %}
+    </header>
+    <div class="container">
 
-<main class="main">
-    <div class="arrow-icon">
-        <i class="fas fa-arrow-left"></i>  
-    </div>
-    <section class="form-section">
-        <div class="container">
-            <h1><span>Generate</span> Use Case Diagram</h1>
-            <form id="use-case-form" action="{% url 'use_case_result' %}" method="post">
-                {% csrf_token %}
-                <div id="actor-container">
-                    <div class="actor-group d-flex mt-3">
-                        <div class="actor-column" style="flex: 1;">
-                            <input type="text" id="actor1" name="actor1" class="form-control" placeholder="Actor 1" required>
-                        </div>
-                        <div class="feature-column" style="flex: 1;" data-actor="1">
-                            <div class="feature-field">
-                                <input type="text" id="feature1_1" name="feature1_1" class="form-control" placeholder="Feature 1" required>
+        <main class="main">
+            <div class="arrow-icon">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <section class="form-section">
+                <div class="container">
+                    <h1><span>Generate</span> Use Case Diagram</h1>
+                    <form id="use-case-form" action="{% url 'use_case_result' %}" method="post">
+                        {% csrf_token %}
+                        <div id="actor-container">
+                            <div class="actor-group d-flex mt-3">
+                                <div class="actor-column" style="flex: 1;">
+                                    <input type="text" id="actor1" name="actor1" class="form-control"
+                                        placeholder="Actor 1" required>
+                                </div>
+                                <div class="feature-column" style="flex: 1;" data-actor="1">
+                                    <div class="feature-field">
+                                        <input type="text" id="feature1_1" name="feature1_1" class="form-control"
+                                            placeholder="Feature 1" required>
+                                    </div>
+                                    <button type="button" class="btn btn-secondary mt-2 add-feature" data-actor="1">+
+                                        Add Feature</button>
+                                </div>
                             </div>
-                            <button type="button" class="btn btn-secondary mt-2 add-feature" data-actor="1">+ Add Feature</button>
                         </div>
-                    </div>
+
+                        <button type="button" class="btn btn-primary mt-2" id="add-actor">+ Add Actor</button>
+                        <button type="button" class="btn btn-success mt-2" id="save-button">Save</button>
+
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="include-extend">Include or Extend</label>
+                                <select id="include-extend" name="include-extend" class="form-select">
+                                    <option value="Include">Include</option>
+                                    <option value="Extend">Extend</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="feature-start">Feature Start</label>
+                                <select id="feature-start" name="feature-start" class="form-select">
+                                    {% for feature in features %}
+                                    <option value="{{ feature }}">{{ feature }}</option>
+                                    {% endfor %}
+                                </select>
+
+                                <label for="feature-end">Feature End</label>
+                                <select id="feature-end" name="feature-end" class="form-select">
+                                    {% for feature in features %}
+                                    <option value="{{ feature }}">{{ feature }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-generate mt-4">Generate Use Case Diagram</button>
+                    </form>
                 </div>
-
-                <button type="button" class="btn btn-primary mt-2" id="add-actor">+ Add Actor</button>
-                <button type="button" class="btn btn-success mt-2" id="save-button">Save</button>
-
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <label for="include-extend">Include or Extend</label>
-                        <select id="include-extend" name="include-extend" class="form-select">
-                            <option value="Include">Include</option>
-                            <option value="Extend">Extend</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="feature-start">Feature Start</label>
-                        <select id="feature-start" name="feature-start" class="form-select">
-                            {% for feature in features %}
-                                <option value="{{ feature }}">{{ feature }}</option>
-                            {% endfor %}
-                        </select>
-                        
-                        <label for="feature-end">Feature End</label>
-                        <select id="feature-end" name="feature-end" class="form-select">
-                            {% for feature in features %}
-                                <option value="{{ feature }}">{{ feature }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-generate mt-4">Generate Use Case Diagram</button>
-            </form>
-        </div>
-    </section>
-</main>
-<script src="{% static 'js/main.js' %}"></script>
-
-<script>
-    document.getElementById('save-button').addEventListener('click', function (e) {
-        e.preventDefault(); 
-
-        const formData = new FormData(document.getElementById('use-case-form'));
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        formData.append('csrfmiddlewaretoken', csrfToken);
-
-        fetch("{% url 'use_case_result' %}", {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                alert(data.message);
-            } else {
-                alert('Failed to save data.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
-
-    let actorCount = 1;
-    let featureMarginIncrement = 30;
-
-    function updateMargin(amount) {
-        const mainElement = document.querySelector('.main');
-        const currentMargin = parseInt(getComputedStyle(mainElement).marginTop) || 0;
-        mainElement.style.marginTop = `${currentMargin + amount}px`;
-    }
-
-    document.getElementById('add-actor').addEventListener('click', function() {
-        const currentActorGroups = document.querySelectorAll('.actor-group').length;
-        actorCount = currentActorGroups + 1;
-
-        const actorContainer = document.getElementById('actor-container');
-
-        const newActorGroup = document.createElement('div');
-        newActorGroup.className = "actor-group d-flex mt-3"; 
-        newActorGroup.innerHTML = `
-            <div class="actor-column" style="flex: 1;">
-                <input type="text" id="actor${actorCount}" name="actor${actorCount}" class="form-control" placeholder="Actor ${actorCount}" required>
-                <button type="button" class="btn btn-danger mt-2 remove-actor">- Remove Actor</button>
-            </div>
-            <div class="feature-column" style="flex: 1;" data-actor="${actorCount}">
-                <div class="feature-field">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <input type="text" id="feature${actorCount}_1" name="feature${actorCount}_1" class="form-control" placeholder="Feature 1" required>
-                    </div>
-                </div>
-                <button type="button" class="btn btn-secondary mt-2 add-feature" data-actor="${actorCount}">+ Add Feature</button>
-            </div>
-        `;
-
-        actorContainer.appendChild(newActorGroup);
-        updateMargin(featureMarginIncrement);
-    });
-
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('add-feature')) {
-            const actorNumber = e.target.getAttribute('data-actor');
-            const featureColumn = e.target.parentElement;
-            const featureCount = featureColumn.querySelectorAll('.feature-field').length + 1;
-
-            const newFeatureField = document.createElement('div');
-            newFeatureField.className = 'feature-field mt-2';
-            newFeatureField.innerHTML = `
-                <div class="d-flex justify-content-between align-items-center">
-                    <input type="text" id="feature${actorNumber}_${featureCount}" name="feature${actorNumber}_${featureCount}" class="form-control" placeholder="Feature ${featureCount}">
-                    <button type="button" class="btn btn-danger remove-feature" style="min-width: 40px; padding: 0;">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
-            featureColumn.insertBefore(newFeatureField, e.target);
-            updateMargin(featureMarginIncrement);
-        }
-
-        if (e.target.classList.contains('remove-feature')) {
-            const featureField = e.target.closest('.feature-field');
-            const featureColumn = featureField.parentElement;
-            featureField.remove();
-
-            const featureFields = featureColumn.querySelectorAll('.feature-field');
-            featureFields.forEach((field, index) => {
-                const input = field.querySelector('input');
-                const actorNumber = featureColumn.getAttribute('data-actor');
-                input.setAttribute('id', `feature${actorNumber}_${index + 1}`);
-                input.setAttribute('name', `feature${actorNumber}_${index + 1}`);
-                input.setAttribute('placeholder', `Feature ${index + 1}`);
-            });
-            updateMargin(-featureMarginIncrement);
-        }
-
-        if (e.target.classList.contains('remove-actor')) {
-            const actorGroup = e.target.closest('.actor-group');
-            actorGroup.remove();
-            updateMargin(-featureMarginIncrement);
-
-            const actorGroups = document.querySelectorAll('.actor-group');
-            actorGroups.forEach((group, index) => {
-                const actorInput = group.querySelector('.actor-column input');
-                actorInput.setAttribute('id', `actor${index + 1}`);
-                actorInput.setAttribute('name', `actor${index + 1}`);
-                actorInput.setAttribute('placeholder', `Actor ${index + 1}`);
-
-                const featureColumn = group.querySelector('.feature-column');
-                featureColumn.setAttribute('data-actor', `${index + 1}`);
-
-                const featureFields = featureColumn.querySelectorAll('.feature-field input');
-                featureFields.forEach((input, featureIndex) => {
-                    input.setAttribute('id', `feature${index + 1}_${featureIndex + 1}`);
-                    input.setAttribute('name', `feature${index + 1}_${featureIndex + 1}`);
-                    input.setAttribute('placeholder', `Feature ${featureIndex + 1}`);
-                });
-
-                const addFeatureButton = featureColumn.querySelector('.add-feature');
-                addFeatureButton.setAttribute('data-actor', `${index + 1}`);
-            });
-        }
-    });
-</script>
-</div>
+            </section>
+        </main>
+    </div>
+    <script src="{% static 'JS/main.js' %}"></script>
+    <script src="{% static 'JS/navbar.js' %}"></script>
 </body>
+
 </html>

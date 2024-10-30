@@ -1,69 +1,39 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #F1DEC6;
+    color: #333;
+    margin: 0;
+    padding: 20px;
 }
 
 .main {
     margin-top: 50px;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-
-.navbar ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: center; /* Menyusun item secara horizontal di tengah */
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 50px;
-    margin-right: 10px;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-}
-
-.nav-links li {
-    margin: 0 15px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-.user-icon i {
-    width: 30px;
+    padding: 20px;
 }
 
 .arrow-icon {
-    position: absolute; /* Atau relative tergantung kebutuhan */
-    left: 100px; /* Jarak dari kiri */
+    position: absolute;
+    /* Atau relative tergantung kebutuhan */
+    left: 100px;
+    /* Jarak dari kiri */
     font-size: 32px;
     top: 120px;
 }
+
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
 
 .form-section {
     display: flex;
@@ -130,13 +100,16 @@ h1 span {
     border-radius: 25px;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Tambahkan transisi halus */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Tambahkan transisi halus */
 }
 
 
 .btn-generate:hover {
-    background-color: #D1721D; /* Ubah warna saat di-hover */
-    transform: scale(1.05); /* Sedikit memperbesar tombol saat di-hover */
+    background-color: #D1721D;
+    /* Ubah warna saat di-hover */
+    transform: scale(1.05);
+    /* Sedikit memperbesar tombol saat di-hover */
 }
 
 .container {

@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #F1DEC6;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
 .navbar {
@@ -93,8 +93,9 @@ body {
 }
 
 .button-group button:hover {
-    background-color: #D1721D; /* Ubah warna latar belakang saat di-hover */
-    transform: scale(1.05); 
+    background-color: #D1721D;
+    /* Ubah warna latar belakang saat di-hover */
+    transform: scale(1.05);
 }
 
 .generate-class-diagram {
@@ -115,6 +116,7 @@ body {
 }
 
 .generate-class-diagram button:hover {
-    background-color: #D1721D; /* Ubah warna latar belakang saat di-hover */
-    transform: scale(1.05); 
+    background-color: #D1721D;
+    /* Ubah warna latar belakang saat di-hover */
+    transform: scale(1.05);
 }

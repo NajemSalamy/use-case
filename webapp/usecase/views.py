@@ -63,3 +63,15 @@ def generate_use_case_diagram(request):
     print("Features for use case diagram:", features)  # Debugging log
     
     return render(request, 'use_case_result.html', {'features': features})
+
+def Specification(request):
+    context = {
+        'nama' : 'hello world',
+    }
+    return render(request, 'Specification.html', context)
+
+def output_activity(request):
+    return render(request, 'output-activity.html')
+
+def input_class(request):
+    return render(request, 'inputClass.html')
