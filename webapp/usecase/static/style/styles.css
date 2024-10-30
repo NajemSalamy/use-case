@@ -7,7 +7,10 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #F1DEC6;
-    color: #333;
+}
+
+.main {
+    margin-top: 50px;
 }
 
 .navbar {
@@ -16,7 +19,14 @@ body {
     align-items: center;
     padding: 1rem 2rem;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; /* Menyusun item secara horizontal di tengah */
 }
 
 .logo {
@@ -129,3 +139,6 @@ h1 span {
     transform: scale(1.05); /* Sedikit memperbesar tombol saat di-hover */
 }
 
+.container {
+    margin-top: 30px;
+}

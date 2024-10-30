@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'usecase',
-    'result',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +76,12 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'designer',  # Nama database Anda
+        'USER': 'root',               # Username database
+        'PASSWORD': 'admin',               # Password database
+        'HOST': 'localhost',          # Host, defaultnya localhost
+        'PORT': '3306',               # Port MySQL, defaultnya 3306
     }
 }
 

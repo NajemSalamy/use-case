@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from usecase import views as usecase    
-from result import views as result
+from usecase import views as usecase
+# from usecase.views import *
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', usecase.UseCaseDiagram, name='UseCaseDiagram'),
-    path('result/', result.use_case_result, name='use_case_results'),
-
-
+    path('generate/', usecase.use_case_result, name='use_case_result'),
+    path('generate_use_case/', usecase.generate_use_case_diagram, name='generate_use_case_diagram'),
 ]
