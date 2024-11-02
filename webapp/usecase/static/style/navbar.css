@@ -4,7 +4,14 @@
     align-items: center;
     padding: 1rem 2rem;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; /* Menyusun item secara horizontal di tengah */
 }
 
 .logo {
@@ -34,4 +41,29 @@
 
 .user-icon i {
     width: 30px;
+}
+
+/* Styling untuk dropdown */
+.dropdown-menu {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    border-radius: 8px;
+    list-style-type: none;
+    display: none; /* Default hidden */
+    min-width: 150px;
+    z-index: 1; /* Pastikan dropdown berada di atas elemen lain */
+}
+
+.dropdown-menu li {
+    padding: 5px 10px;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f0a46d;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
 }

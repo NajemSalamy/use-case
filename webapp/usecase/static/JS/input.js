@@ -221,13 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-
-
-
-
-
-
 let connectionCounter = 1;
 
 function addConnection() {

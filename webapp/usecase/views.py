@@ -15,7 +15,7 @@ def UseCaseDiagram(request):
     # Cetak untuk memeriksa apakah 'context' memiliki data yang benar
     print("Context features:", context['features'])  # Debugging log
     
-    return render(request, 'UseCaseDiagram.html', context)
+    return render(request, 'use case diagram page/UseCaseDiagram.html', context)
 
 def use_case_result(request):
     if request.method == 'POST':
@@ -50,10 +50,10 @@ def use_case_result(request):
             'actor_data': actor_data,
             'nama': 'hello world',
         }
-        return render(request, 'use_case_result.html', context)
+        return render(request, 'use case diagram page/use_case_result.html', context)
     
     # Jika request bukan POST
-    return render(request, 'use_case_result.html', {'nama': 'hello world'})
+    return render(request, 'use case diagram page/use_case_result.html', {'nama': 'hello world'})
 
 def generate_use_case_diagram(request):
     # Ambil semua fitur unik dari database
@@ -62,16 +62,25 @@ def generate_use_case_diagram(request):
     # Cetak untuk memastikan data features tersedia
     print("Features for use case diagram:", features)  # Debugging log
     
-    return render(request, 'use_case_result.html', {'features': features})
+    return render(request, 'use case diagram page/use_case_result.html', {'features': features})
 
 def Specification(request):
     context = {
         'nama' : 'hello world',
     }
-    return render(request, 'Specification.html', context)
+    return render(request, 'use case specification page/Specification.html', context)
 
 def output_activity(request):
     return render(request, 'output-activity.html')
 
 def input_class(request):
-    return render(request, 'inputClass.html')
+    return render(request, 'class diagram page/inputClass.html')
+
+def input_sequence(request):
+    return render(request, 'sequence diagram page/inputsequence.html')
+
+def output_class(request):
+    return render(request, 'class diagram page/outputclass.html')
+
+def output_sequence(request):
+    return render(request, 'sequence diagram page/outputsequence.html')

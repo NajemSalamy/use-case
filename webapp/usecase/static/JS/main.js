@@ -23,6 +23,7 @@ document.getElementById('save-button').addEventListener('click', function (e) {
         .catch(error => console.error('Error:', error));
 });
 
+
 let actorCount = 1;
 let featureMarginIncrement = 30;
 

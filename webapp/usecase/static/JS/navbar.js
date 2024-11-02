@@ -15,4 +15,13 @@ document.addEventListener('click', function (event) {
         dropdownMenu.classList.remove('show');
         dropdownMenu.style.display = 'none';
     }
+    document.addEventListener("DOMContentLoaded", function () {
+        const dropdownToggle = document.getElementById("pagesDropdown");
+        const dropdownMenu = document.getElementById("dropdownMenu");
+    
+        dropdownToggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        });
+    });
 });

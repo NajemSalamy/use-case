@@ -9,14 +9,38 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Use Case Specification</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style/Specification.css' %}">
-    <link rel="stylesheet" href="{% static 'style/Navbar.css' %}">
-    
+    <link rel="stylesheet" href="{% static 'style/use case specification/specification.css' %}">
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}"> 
 </head>
 
 <body>
     <header>
-        {% include 'navbar.html' %}
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{% static 'asset/gologo.png' %}" alt="Logo">
+            </div>
+            <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button">
+                    Pages
+                </a>
+                <ul class="dropdown-menu" id="dropdownMenu" aria-labelledby="pagesDropdown"
+                        style="display: none;">
+                        <li><a class="dropdown-item" href="{% url 'UseCaseDiagram' %}">Use Case Diagram</a></li>
+                        <li><a class="dropdown-item" href="{% url 'Specification' %}">Use Case Specification</a></li>
+                        <li><a class="dropdown-item" href="{% url 'input_class' %}">Class Diagram</a></li>
+                        <li><a class="dropdown-item" href="{% url 'input_sequence' %}">Sequence Diagram</a>
+                        </li></ul>
+                        </li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">My Projects</a></li>
+                </ul>
+            <div class="user-icon">
+                            <i class="fas fa-user"></i>
+            </div>
+        </nav>
     </header>
 
         <div class="arrow-icon">

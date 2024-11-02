@@ -27,5 +27,8 @@ urlpatterns = [
     path('generate_use_case/', usecase.generate_use_case_diagram, name='generate_use_case_diagram'),
     path('specification', usecase.Specification, name='Specification'),  
     path('output-activity/', usecase.output_activity, name='output_activity'), 
-    path('inputlass/', usecase.input_class, name='input_class'), 
+    path('inputclass/', usecase.input_class, name='input_class'), 
+    path('inputsequence/', usecase.input_sequence, name='input_sequence'),
+    path('outputclass/', usecase.output_class, name='output_class'),
+    path('outputsequence/', usecase.output_sequence, name='output_sequence'),
 ]

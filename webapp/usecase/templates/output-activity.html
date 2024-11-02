@@ -9,29 +9,17 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Output Activity Diagram</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style/output-activity.css' %}">
+    <link rel="stylesheet" href="{% static 'style/activity diagram/activity.css' %}">
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
 
 </head>
 
 <body>
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="{% static 'asset/gologo.png' %}" alt="Logo">
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Pages</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">My Projects</a></li>
-            </ul>
-            <div class="user-icon">
-                <i class="fas fa-user"></i>
-            </div>
-        </nav>
+        {% include 'navbar.html' %}
     </header>
 
+<div class="container"> 
     <div class="arrow-icon">
         <i class="fas fa-arrow-left"></i>
     </div>
@@ -43,7 +31,8 @@
             <img src="{% static 'asset/output-activity.jpg' %}" alt="Activity Diagram">
         </div>
     </div>
-
+</div>
+    <script src="{% static 'JS/navbar.js' %}" ></script>
 </body>
 
 </html>
