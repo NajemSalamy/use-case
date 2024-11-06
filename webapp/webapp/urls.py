@@ -31,4 +31,5 @@ urlpatterns = [
     path('inputsequence/', usecase.input_sequence, name='input_sequence'),
     path('outputclass/', usecase.output_class, name='output_class'),
     path('outputsequence/', usecase.output_sequence, name='output_sequence'),
+    path('save_specification/', usecase.save_specification, name='save_specification'),
 ]

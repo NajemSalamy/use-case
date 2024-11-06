@@ -6,15 +6,22 @@
 
 
 body {
-    font-family: Arial, sans-serif;
+    overflow-y: scroll;
+    height: 100vh;
+    padding: 2opx;
     background-color: #F1DEC6;
-    color: #333;
-    margin: 0;
-    /* padding: 20px; */
 }
 
-.main {
-    margin-top: 50px;
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+}
+
+main {
     padding: 20px;
 }
 
